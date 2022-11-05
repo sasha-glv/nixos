@@ -17,6 +17,7 @@
   in {
     nixosConfigurations = {
       thror = lib.nixosSystem {
+        pkgs = pkgs;
         system = system;
         modules = [
           ./modules/k8s_haproxy.nix
