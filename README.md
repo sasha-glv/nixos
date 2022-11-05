@@ -13,3 +13,9 @@ parted -a optimal /dev/sdb -- mkpart primary 0% 100%
 mkfs.ext4 -L vm1 /dev/sda1
 mkfs.ext4 -L vm2 /dev/sdb1
 ```
+
+``` sh
+git clone https://github.com/sasha-glv/nixos.git
+nix shell
+nixos-rebuild switch --impure --flake /etc/nixos/nixos#${HOST}
+```

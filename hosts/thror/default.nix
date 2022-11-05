@@ -41,7 +41,7 @@
   };
   services.k8s_haproxy = {
     enable = true;
-    backends = ["10.200.0.10" "10.200.0.11" "10.200.0.12"];
+    backends = ["eldalote 10.200.0.10" "aegnor 10.200.0.11" "galadriel 10.200.0.12"];
   };
   system.copySystemConfiguration = true;
 

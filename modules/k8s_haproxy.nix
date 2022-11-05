@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.services.k8s_haproxy;
-  backendsCollect = concatStringsSep "\n" (imap0
+  backendsCollect = concatStringsSep "    " (imap0
     (i: v: ''
     server ${toString v} port 6443
     '') (cfg.backends));
@@ -51,7 +51,7 @@ backend k8s-api
     # tuning options
     timeout connect 3s
     retries 10
-${backendsCollect}
+    ${backendsCollect}
 '';
 
 };
