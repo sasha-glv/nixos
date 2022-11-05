@@ -5,7 +5,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";             # primary nixpkgs
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";  # for packages on the edge
   };
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }:
+  outputs = inputs @ { system, self, nixpkgs, nixpkgs-unstable, ... }:
   let
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
@@ -15,10 +15,12 @@
         overlays = [];
     };
   in {
-    nixosConfigurations = {
+    nixosConfigurations =
+      let
+        inherit system;
+      in {
       thror = lib.nixosSystem {
         pkgs = pkgs;
-        system = system;
         modules = [
           ./modules/k8s_haproxy.nix
           ./hosts/thror
