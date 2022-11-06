@@ -6,9 +6,9 @@
   };
   outputs = inputs @ { self, nixpkgs-unstable, ... }:
   let
-    inherit (nixpkgs) lib;
+    inherit (nixpkgs-unstable) lib;
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
+    pkgs = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
         overlays = [];
