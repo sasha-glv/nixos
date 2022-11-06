@@ -35,15 +35,7 @@
 
   services.openssh.enable = true;
   services.qemuGuest.enable = true;
-  services.nextcloud = {                
-    enable = true;
-    package = pkgs.nextcloud25;
-    hostName = "nextcloud.home.localdomain";
-    config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
-    config.extraTrustedDomains = ["nextcloud.svc.home.localdomain" "nextcloud.ryebee.me"];
-    config.overwriteProtocol = "https";
-    home = "/mnt/nextcloud";
-  };
+
   services.k8s_haproxy = {
     enable = true;
     backends = ["eldalote 10.200.0.10" "aegnor 10.200.0.11" "galadriel 10.200.0.12"];
