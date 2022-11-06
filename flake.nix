@@ -2,7 +2,7 @@
   description = "System config";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";             # primary nixpkgs
+    nixpkgs.url = "nixpkgs/nixos-stable";             # primary nixpkgs
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";  # for packages on the edge
   };
   outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }:

@@ -32,7 +32,8 @@
   services.openssh.enable = true;
   services.qemuGuest.enable = true;
   services.nextcloud = {                
-    enable = true;                   
+    enable = true;
+    package = pkgs.nextcloud25;
     hostName = "nextcloud.home.localdomain";
     config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
     config.extraTrustedDomains = ["nextcloud.svc.home.localdomain" "nextcloud.ryebee.me"];

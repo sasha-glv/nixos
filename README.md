@@ -15,6 +15,7 @@ mkfs.ext4 -L vm2 /dev/sdb1
 ```
 
 ``` sh
+cd /etc/nixos
 git clone https://github.com/sasha-glv/nixos.git
 nix shell
 nixos-rebuild switch --impure --flake /etc/nixos/nixos#${HOST}
