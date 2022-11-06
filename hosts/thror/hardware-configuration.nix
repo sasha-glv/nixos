@@ -15,11 +15,6 @@
       fsType = "ext4";
     };
 
-  fileSystems."/mnt/nextcloud" =
-    { device = "/dev/disk/by-label/vm2";
-      fsType = "ext4";
-    };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
