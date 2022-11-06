@@ -2,10 +2,9 @@
   description = "System config";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-stable";             # primary nixpkgs
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";  # for packages on the edge
   };
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ... }:
+  outputs = inputs @ { self, nixpkgs-unstable, ... }:
   let
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
