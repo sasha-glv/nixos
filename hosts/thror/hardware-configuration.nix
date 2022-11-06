@@ -11,12 +11,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/bdc7895e-0af8-4a81-96c2-71c0b36dc6da";
+    { device = "/dev/disk/by-uuid/d84a1622-378c-450a-b517-3aeb0c1bd6f0";
       fsType = "ext4";
     };
 
   fileSystems."/mnt/nextcloud" =
-    { device = "/dev/disk/by-uuid/7a31453d-f1d9-4b15-901b-04f0bf3f3d12";
+    { device = "/dev/disk/by-uuid/29449621-7b63-4790-8cdc-0cebebabe5a8";
       fsType = "ext4";
     };
 
