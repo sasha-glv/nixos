@@ -14,6 +14,10 @@
     { device = "/dev/disk/by-label/vm1";
       fsType = "ext4";
     };
+  fileSystems."/var/lib/minio" =
+    { device = "/dev/disk/by-label/vm2";
+      fsType = "ext4";
+    };
 
   swapDevices = [ ];
 

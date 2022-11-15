@@ -24,17 +24,27 @@
 
   networking.hostName = "thror";
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
     curl
     parted
     htop
     fd
     ripgrep
     dig
+    iperf3
   ];
 
   services.openssh.enable = true;
   services.qemuGuest.enable = true;
+  services.minio = {
+    enable = true;
+    region = "eu-west-1";
+    rootCredentialsFile = "/home/root/minio-credentials";
+  };
+  # custom.services.seafile = {
+  #   enable = true;
+  #   hostname = "thror";
+  # };
 
   services.k8s_haproxy = {
     enable = true;

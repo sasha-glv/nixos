@@ -1,5 +1,7 @@
 # Nixos install
 
+## Thror
+
 SSH into the box under root.
 
 ``` sh
@@ -37,4 +39,3 @@ cd /home/root/nixos
 nixos-rebuild switch --impure --flake .#${HOST}
 ```
 
-`
