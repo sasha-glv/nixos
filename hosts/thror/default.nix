@@ -52,7 +52,7 @@
   };
   system.copySystemConfiguration = true;
 
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.05";
 
   systemd.services.qemu-guest-agent.enable = true;
   networking.firewall.enable = false;
