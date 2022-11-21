@@ -6,11 +6,9 @@
       ../hosts/${host}
       home-manager.nixosModules.home-manager
       {
-        users.users = {
-          inherit (import ../users/sashka {}) sashka;
-          inherit (import ../users/root {}) root;
-        };
+        inherit (import ../users {}) users;
         home-manager = {
+          users.sashka = import ../users/sashka;
           useGlobalPkgs = true;
         };
       }

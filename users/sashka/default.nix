@@ -1,12 +1,22 @@
-{...}:
+{ config, pkgs, ... }:
+
 {
-    sashka = {
-        password = "sashka";
-    
-        isNormalUser = true;
-        extraGroups = [ "wheel" ];
-        openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDkXEf4mDH+g5jMl8+9Lw5Y35mtEjvtBruiWlXIdCkEnx1g+0i5MKv9btF1zf0C5eVVgJvtqQ7hUOK//1SlcsqNIoAffxu99D3mHjz6FPbuyl7ZEsmGQMcHMob6sd4x5yY3A022xB7XjKQHEB98RBBQtp0nn5w0FiC3eXUfBveHgeEErQ9rGwj+9VmCfCEgGgKRaP93Iy/eqa1DWvAMyZvPSqtlfhvA57u4feWFbzkGdWhkiRdIlFzdZwUwSQ3Zpmhp+W5yfd2gEMxfegYP/yCdwe+At3U0aRxO0V50nGN/EEPiKRCwDQ6Qqn7zHlPeuTCLznpnrp8022QYCeAjYqLlSKwV4Fbwhkv8wdYb/rSfx3KktYXyBQ5CiI2WKpXRwt/FVZXppk8B24Np4EIjypssX9X3YD6xUxdveJVluV9+3eLGXgBLoYCmpggFnqfzBlo+t0N717ZTyCj1ouY/4b/22xwIcLVC7Sq6O3nkKYsUvrEpNa7AZKBbexpl6XzXrgc="
-    ];
-    };
+  # Home Manager needs a bit of information about you and the
+  # paths it should manage.
+  home.username = "sashka";
+  home.homeDirectory = "/home/sashka";
+
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "22.05";
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
 }
