@@ -16,7 +16,14 @@
   # changes in each release.
   home.stateVersion = "22.05";
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
+  # Add packages - zsh, firefox, nvim, vscode, emacs, kitty
+  programs = {
+    zsh.enable = true;
+    firefox.enable = true;
+    neovim.enable = true;
+    kitty.enable = true;
+    emacs.enable = true;
+    vscode.enable = true;
+    home-manager.enable = true;
+  };
 }

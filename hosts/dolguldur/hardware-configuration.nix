@@ -1,22 +1,21 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "uhci_hcd" "ahci" "xhci_pci" "nvme" "usbhid" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/vm1";
+    { device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
-  fileSystems."/var/lib/minio" =
-    { device = "/dev/disk/by-label/vm2";
-      fsType = "ext4";
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-label/boot";
+      fsType = "vfat";
     };
 
   swapDevices = [ ];
@@ -26,7 +25,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ens160.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
