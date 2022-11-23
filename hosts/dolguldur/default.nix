@@ -1,11 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-    
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -20,7 +19,8 @@
   system.copySystemConfiguration = true;
 
   # This works through our custom module imported above
-  virtualisation.vmware.guest.enable = true;
+  virtualisation.vmware.guest.enable = true; 
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   system.stateVersion = "22.05";
 
@@ -107,7 +107,10 @@
     xclip
     yubikey-manager
     vault
-
+    sqlite
+    gcc
+    kbfs
+    keybase
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.
     (writeShellScriptBin "xrandr-auto" ''

@@ -7,9 +7,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     emacs.url = "github:nix-community/emacs-overlay";
+    helix.url = "github:helix-editor/helix";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly, helix,  ... }:
     let
       inherit (nixpkgs) lib;
       inherit (builtins) listToAttrs map;

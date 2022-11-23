@@ -26,22 +26,23 @@
   home.file."${config.home.homeDirectory}/.doom.d/packages.el".source = ../../config/doom.d/packages.el;
   home.file."${config.home.homeDirectory}/.doom.d/init.el".source = ../../config/doom.d/init.el;
 
-  # # Source scripts from zsh
-
-  # home.sessionVariables.HOME_MANAGER_SHELL_INIT = ''
-  #   source ${config.home.homeDirectory}/sh.functions/vault.sh
-  #   source ${config.home.homeDirectory}/sh.functions/kubectl.sh
-  #   source ${config.home.homeDirectory}/sh.functions/nav.sh
-  #   source ${config.home.homeDirectory}/sh.functions/git.sh
-  # '';
-
-
+  # Set environment variable default editor to neovim
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   # Configure git
   programs.git = {
     enable = true;
     userName = "Sasha Guljajev";
     userEmail = "sasha@zxcvmk.com";
+    signing = {
+      signByDefault = true;
+      key = "FAE411852283959B";
+    };
+    extraConfig = {
+      github.user = "sasha-glv";
+    };
     aliases = {
       co = "checkout";
       ci = "commit";
@@ -55,7 +56,8 @@
     };
 
   };
-
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
   # Add packages - zsh, firefox, nvim, vscode, emacs, kitty
   programs = {
     gpg = {
@@ -67,11 +69,16 @@
       enableSyntaxHighlighting = true;
       enableCompletion = true;
       initExtra = ''
+        autoload -Uz select-word-style edit edit-command-line
+        zle -N edit-command-line
+        bindkey -e
+        bindkey '^X^E' edit-command-line
         select-word-style bash
         source ${config.home.homeDirectory}/sh.functions/vault.sh
         source ${config.home.homeDirectory}/sh.functions/kubectl.sh
         source ${config.home.homeDirectory}/sh.functions/nav.sh
         source ${config.home.homeDirectory}/sh.functions/git.sh
+        source ${config.home.homeDirectory}/sh.functions/boilerplate.sh
       '';
       history = {
         share = true;
@@ -95,7 +102,7 @@
     emacs = {
       enable = true;
       package = pkgs.emacsNativeComp;
-      extraPackages = (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite ] );
+      extraPackages = (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite3 ] );
     };
     vscode.enable = true;
     home-manager.enable = true;
