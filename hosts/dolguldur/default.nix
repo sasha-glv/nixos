@@ -5,15 +5,12 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
+    
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Setup qemu so we can run x86_64 binaries
   boot.binfmt.emulatedSystems = ["x86_64-linux"];
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -56,7 +53,6 @@
       keep-outputs = true
       keep-derivations = true
     '';
-
   };
 
   # We expect to run the VM on hidpi machines.
@@ -110,6 +106,7 @@
     killall
     xclip
     yubikey-manager
+    vault
 
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.

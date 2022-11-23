@@ -1,0 +1,7 @@
+Library
+.rustup
+.git
+**/objects/**
+**/cache/**
+.vscode
+.npm

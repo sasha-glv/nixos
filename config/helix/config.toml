@@ -1,0 +1,13 @@
+theme = "dark_high_contrast"
+
+[editor]
+scroll-lines = 1
+rulers = [80, 120]
+mouse = true
+
+[keys.normal]
+"space" = {"c" = ":config-open", "f" = "file_picker", "b" = "buffer_picker", "x" = ":buffer-close"}
+"tab" = ":buffer-next"
+"S-tab" = ":buffer-previous"
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"

@@ -1,0 +1,27 @@
+{
+    "languageserver": {
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": [
+                "terraform"
+            ],
+            "initializationOptions": {}
+        }
+    },
+    "list.normalMappings": {
+        "<C-n>": "normal:j",
+        "<C-p>": "normal:k"
+    },
+    "list.insertMappings": {
+        "<C-n>": "normal:j",
+        "<C-p>": "normal:k"
+    },
+    // "coc.preferences.useQuickfixForLocations": true,
+    "coc.source.buffer.enable": false,
+    "coc.source.around.enable": false,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "rust",
+        "json",
+        "terraform"
+    ]
+}
