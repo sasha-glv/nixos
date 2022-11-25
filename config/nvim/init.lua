@@ -33,6 +33,7 @@ require('packer').startup(function()
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'nvim-treesitter/playground' }
   use { 'mbbill/undotree' }
+  use { 'github/copilot.vim' }
   use({ 'ggandor/leap.nvim', config = function()
     require('leap').set_default_keymaps()
   end

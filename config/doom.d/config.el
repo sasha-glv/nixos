@@ -26,9 +26,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "FiraCode" :size 48)
-      doom-unicode-font (font-spec :family "FiraCode" :size 48)
-      doom-big-font (font-spec :family "FiraCode" :size 48 :weight 'regular)
+(setq doom-font (font-spec :family "FiraCode" :size 38)
+      doom-unicode-font (font-spec :family "FiraCode" :size 38)
+      doom-big-font (font-spec :family "FiraCode" :size 38 :weight 'regular)
       ; doom-variable-pitch-font (font-spec :family "Dejavu Sans")
       doom-font-increment 1)
 ;;

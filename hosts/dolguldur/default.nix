@@ -24,7 +24,6 @@
 
   system.stateVersion = "22.05";
 
-  networking.firewall.enable = false;
   boot.loader.systemd-boot.consoleMode = "0";
 
   disabledModules = [ "virtualisation/vmware-guest.nix" ];
@@ -41,6 +40,12 @@
       "defaults"
     ];
   };
+
+  # Allow SSH access through the firewall
+  networking.firewall.allowedTCPPorts = [ 22 ];
+
+  # Allow tailscale through the firewall
+  networking.firewall.checkReversePath = "loose";
 
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -62,7 +67,12 @@
   security.sudo.wheelNeedsPassword = false;
 
   # Virtualization settings
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      "bip" = "192.168.65.1/24";
+    };
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -93,18 +103,6 @@
     ];
   };
 
-  # Add noannoyance v2 gnome extension
-  programs.gnome-extensions = {
-    enable = true;
-    extensions = with pkgs.gnomeExtensions; [
-      noannoyance
-    ];
-  };
-
-  # Set gnome scaling to 200%
-  programs.gnome3.core-shell.enable = true;
-  programs.gnome3.core-shell.dpi = 200;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -123,6 +121,13 @@
     gcc
     kbfs
     keybase
+    kubectl
+    terraform
+    google-cloud-sdk
+    awscli
+    nodejs-16_x
+    nodePackages.yaml-language-server
+    python3
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.
     (writeShellScriptBin "xrandr-auto" ''
