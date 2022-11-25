@@ -13,6 +13,8 @@
   
   time.timeZone = "Europe/Amsterdam";
 
+  services.tailscale.enable = true;
+
   networking.hostName = "thror";
   environment.systemPackages = with pkgs; [
     neovim
@@ -23,6 +25,19 @@
     ripgrep
     dig
     iperf3
+    killall
+    xclip
+    yubikey-manager
+    vault
+    sqlite
+    gcc
+    kbfs
+    keybase
+    kubectl
+    terraform
+    nodejs-16_x
+    nodePackages.yaml-language-server
+    python3
   ];
 
   services.openssh.enable = true;

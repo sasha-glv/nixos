@@ -14,7 +14,7 @@ let
 in
 {
   imports = [
-    (mkRenamedOptionModule [ "services" "vmwareGuest" ] [ "virtualisation" "vmware-aarch64" "guest" ])
+    (mkRenamedOptionModule [ "services" "vmwareGuest-aarch64" ] [ "virtualisation" "vmware-aarch64" "guest" ])
   ];
 
   options.virtualisation.vmware-aarch64.guest = {
