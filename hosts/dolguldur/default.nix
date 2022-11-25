@@ -93,6 +93,18 @@
     ];
   };
 
+  # Add noannoyance v2 gnome extension
+  programs.gnome-extensions = {
+    enable = true;
+    extensions = with pkgs.gnomeExtensions; [
+      noannoyance
+    ];
+  };
+
+  # Set gnome scaling to 200%
+  programs.gnome3.core-shell.enable = true;
+  programs.gnome3.core-shell.dpi = 200;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
