@@ -19,7 +19,7 @@
   system.copySystemConfiguration = true;
 
   # This works through our custom module imported above
-  virtualisation.vmware.guest.enable = true; 
+  virtualisation.vmware-aarch64.guest.enable = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
   system.stateVersion = "22.05";

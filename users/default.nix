@@ -9,7 +9,7 @@ in
 {
     users.users = {
         sashka = {
-            passwordHash = "$2b$05$p9IzRQjBvRU3nK1G/zKynOHLIGDGqTxOXPDrmEJvhaEXALZ5L8F.i";
+            hashedPassword = "$2b$05$p9IzRQjBvRU3nK1G/zKynOHLIGDGqTxOXPDrmEJvhaEXALZ5L8F.i";
             # Set default shell to zsh
             shell = (import <nixpkgs> {}).pkgs.zsh;
             isNormalUser = true;

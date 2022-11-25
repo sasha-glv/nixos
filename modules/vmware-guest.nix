@@ -8,16 +8,16 @@
 with lib;
 
 let
-  cfg = config.virtualisation.vmware.guest;
+  cfg = config.virtualisation.vmware-aarch64.guest;
   open-vm-tools = if cfg.headless then pkgs.open-vm-tools-headless else pkgs.open-vm-tools;
   xf86inputvmmouse = pkgs.xorg.xf86inputvmmouse;
 in
 {
   imports = [
-    (mkRenamedOptionModule [ "services" "vmwareGuest" ] [ "virtualisation" "vmware" "guest" ])
+    (mkRenamedOptionModule [ "services" "vmwareGuest" ] [ "virtualisation" "vmware-aarch64" "guest" ])
   ];
 
-  options.virtualisation.vmware.guest = {
+  options.virtualisation.vmware-aarch64.guest = {
     enable = mkEnableOption "VMWare Guest Support";
     headless = mkOption {
       type = types.bool;
