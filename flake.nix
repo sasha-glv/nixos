@@ -20,7 +20,7 @@
     in {
       nixosConfigurations = listToAttrs                       # { thror = <system> }
         (map
-          (n: {name = n; value = ( mylib.mkHost n system);}) # { name = "thror"; value = <system> }
+          (n: {name = n; value = ( mylib.mkHost n system);})  # { name = "thror"; value = <system> }
           ((mylib.readHosts ./hosts)));                       # [ "thror" ]
     };
 }
