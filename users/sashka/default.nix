@@ -38,7 +38,7 @@
     userEmail = "sasha@zxcvmk.com";
     signing = {
       signByDefault = true;
-      key = "FAE411852283959B";
+      # key = "FAE411852283959B";
     };
     extraConfig = {
       github.user = "sasha-glv";
