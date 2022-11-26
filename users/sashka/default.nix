@@ -26,6 +26,8 @@
   home.file."${config.home.homeDirectory}/.doom.d/packages.el".source = ../../config/doom.d/packages.el;
   home.file."${config.home.homeDirectory}/.doom.d/init.el".source = ../../config/doom.d/init.el;
 
+  # Add zellij config
+  home.file."${config.xdg.configHome}/zellij/zellij".source = ../../config/zellij/zellij;
   # Set environment variable default editor to neovim
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -110,5 +112,6 @@
       enable = true;
       package = pkgs.helix;
     };
+    zellij.enable = true;
   };
 }

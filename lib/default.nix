@@ -1,14 +1,15 @@
-{home-manager, lib, nixpkgs, overlays, ... }:
+{lib, ... }:
 {
-  mkHost = host: system: lib.nixosSystem {
+  mkHost = {host, system, inputs, overlays, ...}: lib.nixosSystem {
     system = if host == "dolguldur" then "aarch64-linux" else system;
     modules = [
       ../hosts/${host}
       { nixpkgs.config.allowUnfree = true;
         nixpkgs.overlays = overlays; }
-      home-manager.nixosModules.home-manager
+      /* inputs.helix */
+      inputs.home-manager.nixosModules.home-manager
       {
-        inherit (import ../users { inherit nixpkgs;}) users;
+        inherit (import ../users { inherit (inputs) nixpkgs;}) users;
         home-manager = {
           users.sashka = import ../users/sashka;
           useGlobalPkgs = true;

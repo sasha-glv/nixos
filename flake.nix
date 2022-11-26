@@ -10,17 +10,17 @@
     helix.url = "github:helix-editor/helix";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, neovim-nightly, helix,  ... }:
+  outputs = inputs @ { self, nixpkgs,  ... }:
     let
       inherit (nixpkgs) lib;
       inherit (builtins) listToAttrs map;
-      system = builtins.currentSystem;
+      system = "x86_64-linux";
       overlays = [ inputs.neovim-nightly.overlay inputs.emacs.overlay ];
-      mylib = import ./lib { inherit lib home-manager nixpkgs overlays; };
+      mylib = import ./lib { inherit lib;  };
     in {
       nixosConfigurations = listToAttrs                       # { thror = <system> }
         (map
-          (n: {name = n; value = ( mylib.mkHost n system);})  # { name = "thror"; value = <system> }
+          (n: {name = n; value = ( mylib.mkHost {inherit inputs overlays; host = n; system = system;});})                                                  # { name = "thror"; value = <system> }
           ((mylib.readHosts ./hosts)));                       # [ "thror" ]
     };
 }
