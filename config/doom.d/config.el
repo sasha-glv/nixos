@@ -116,7 +116,6 @@
 (use-package! dired
   :hook (dired-mode . (lambda () (dired-hide-details-mode +1))))
 
-(setq telega-server-libs-prefix "/opt/homebrew/Cellar/tdlib/HEAD-07b7faf/")
 (setq indent-tabs-mode nil)
 (setq projectile-switch-project-action 'projectile-vc)
 (setq auth-sources '("~/.authinfo.gpg"))
