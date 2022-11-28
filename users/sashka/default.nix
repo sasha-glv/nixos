@@ -113,5 +113,12 @@
       package = pkgs.helix;
     };
     zellij.enable = true;
+    go = {
+      enable = true;
+    };
+
+    gh = {
+      enable = true;
+    };
   };
 }
