@@ -1,3 +1,20 @@
+# Iterate over projects in projects dir, and get all PRs
+# for each project.
+function gh-run-in-projects() {
+  # Array of projects
+  projects=( $(ls -d ~/projects/*) )
+  outputs=()
+
+  for project in "${projects[@]}"; do
+    project_git=$(cd $project && git remote get-url origin 2>/dev/null)
+    if [ ! -z "$project_git" ]; then
+      output=$($@ $project_git)
+      outputs+=($output)
+    fi
+  done
+  echo "${outputs[@]}"
+}
+
 function gh-pr {
   gh pr list ${@:1}
 }
@@ -25,7 +42,8 @@ function gh-pr-stale-add-label {
 }
 
 function gh-pr-my-table {
-  gh pr list --search="author:sasha-glv" ${@:1}
+  gh-run-in-projects gh pr list --search="author:sasha-glv" ${@:1} -R
+
 }
 
 function gh-pr-my {
@@ -51,33 +69,3 @@ function git-branch {
 function git-branch-delete {
   git branch --sort=-committerdate | fzf --multi | rg '\s' -r '' | xargs -I{} git branch -D {}
 }
-
-# function git-branch {
-#   local arg=$1
-#   local branch=$(git branch -a --format '%(refname)' 2>/dev/null | fzf )
-#   branch=$(echo $branch | sed -r 's#refs/remotes/origin/(.*)$#\1#')
-#   branch=$(echo $branch | sed -r 's#refs/heads/(.*)$#\1#')
-#   if [[ -z $branch ]]; then
-#     return 0
-#   fi
-#   kitty @set-tab-title 🙈 ${branch}
-#   if [[ $arg == "g" ]]; then
-#     git switch $branch
-#     return 0
-#   fi
-#   local is_bare=$(git rev-parse --is-bare-repository)
-#   local top=""
-#   if [[ $is_bare == "true" ]]; then
-#     top=$(pwd)
-#   else
-#     top=$(git rev-parse --show-toplevel 2>/dev/null | sed -r 's#(.*)/+([^/]+)$#\1#g')
-#   fi
-
-#   worktree_path=$(echo $branch | sed 's#/#-#g')
-#   if [[ $top != "" ]]; then
-#     git worktree add $top/${worktree_path} ${branch} && cd $top/${worktree_path}
-#   else
-#     git worktree add ${worktree_path} ${branch}
-#   fi
-# }
-
