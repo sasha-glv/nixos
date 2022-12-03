@@ -2,11 +2,13 @@
 {
   mkHost = {host, system, inputs, overlays, ...}: lib.nixosSystem {
     system = if host == "dolguldur" then "aarch64-linux" else system;
+    specialArgs = { inherit host system inputs overlays; };
     modules = [
       ../hosts/${host}
-      { nixpkgs.config.allowUnfree = true;
-        nixpkgs.overlays = overlays; }
-      /* inputs.helix */
+      {
+        nixpkgs.config.allowUnfree = true;
+        nixpkgs.overlays = overlays;
+      }
       inputs.home-manager.nixosModules.home-manager
       {
         inherit (import ../users { inherit (inputs) nixpkgs;}) users;

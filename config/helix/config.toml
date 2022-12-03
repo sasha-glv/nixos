@@ -4,6 +4,7 @@ theme = "dark_high_contrast"
 scroll-lines = 1
 rulers = [80, 120]
 mouse = true
+true-color = true
 
 [keys.normal]
 "space" = {"c" = ":config-open", "f" = "file_picker", "b" = "buffer_picker", "x" = ":buffer-close"}

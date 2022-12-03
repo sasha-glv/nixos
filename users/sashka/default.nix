@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, system, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -60,7 +60,6 @@
   };
   services.keybase.enable = true;
   services.kbfs.enable = true;
-  # Add packages - zsh, firefox, nvim, vscode, emacs, kitty
   programs = {
     gpg = {
       enable = true;
@@ -81,6 +80,7 @@
         source ${config.home.homeDirectory}/sh.functions/nav.sh
         source ${config.home.homeDirectory}/sh.functions/git.sh
         source ${config.home.homeDirectory}/sh.functions/boilerplate.sh
+        export EDITOR=nvim
       '';
       history = {
         share = true;
@@ -90,29 +90,31 @@
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      enableBashIntegration = true;
     };
     firefox.enable = true;
+
     neovim = {
       enable = true;
       package = pkgs.neovim-nightly;
     };
+
     kitty = {
       theme = "Modus Vivendi";
       enable = true;
       extraConfig = builtins.readFile ../../config/kitty/kitty.conf;
     };
+
     emacs = {
       enable = true;
       package = pkgs.emacsNativeComp;
       extraPackages = (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite3 ] );
     };
+
     vscode.enable = true;
     home-manager.enable = true;
-    helix = {
-      enable = true;
-      package = pkgs.helix;
-    };
     zellij.enable = true;
+
     go = {
       enable = true;
     };

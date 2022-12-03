@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -17,6 +17,7 @@
 
   networking.hostName = "thror";
   environment.systemPackages = with pkgs; [
+    inputs.helix.packages.${system}.helix
     neovim
     curl
     parted
