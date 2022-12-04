@@ -28,10 +28,9 @@
 
   # Add zellij config
   home.file."${config.xdg.configHome}/zellij/zellij".source = ../../config/zellij/zellij;
-  # Set environment variable default editor to neovim
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+
+  # Add starship/starship.toml config
+  home.file."${config.xdg.configHome}/starship/starship.toml".source = ../../config/starship/starship.toml;
 
   # Configure git
   programs.git = {
@@ -64,17 +63,14 @@
     gpg = {
       enable = true;
     };
-    zsh = {
+    fzf = {
       enable = true;
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      enableBashIntegration = true;
+    };
+    bash = {
+      enable = true;
       enableCompletion = true;
       initExtra = ''
-        autoload -Uz select-word-style edit edit-command-line
-        zle -N edit-command-line
-        bindkey -e
-        bindkey '^X^E' edit-command-line
-        select-word-style bash
         source ${config.home.homeDirectory}/sh.functions/vault.sh
         source ${config.home.homeDirectory}/sh.functions/kubectl.sh
         source ${config.home.homeDirectory}/sh.functions/nav.sh
@@ -82,15 +78,6 @@
         source ${config.home.homeDirectory}/sh.functions/boilerplate.sh
         export EDITOR=nvim
       '';
-      history = {
-        share = true;
-        size = 10000000;
-      };
-    };
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-      enableBashIntegration = true;
     };
     firefox.enable = true;
 
@@ -120,6 +107,10 @@
     };
 
     gh = {
+      enable = true;
+    };
+
+    starship = {
       enable = true;
     };
   };
