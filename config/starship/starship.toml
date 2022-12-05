@@ -46,5 +46,5 @@ format = '[$symbol $context \($namespace\)](dimmed green) '
 disabled = false
 
 [directory]
-truncate_to_repo = false
+# truncate_to_repo = false
 

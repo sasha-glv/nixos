@@ -32,6 +32,9 @@
   # Add starship/starship.toml config
   home.file."${config.xdg.configHome}/starship/starship.toml".source = ../../config/starship/starship.toml;
 
+  # Add nixpkg config
+  home.file."${config.home.homeDirectory}/.config/nixpkgs/config.nix".source = ../../config/nixpkgs/config.nix;
+
   # Configure git
   programs.git = {
     enable = true;
