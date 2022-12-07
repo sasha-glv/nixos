@@ -32,6 +32,9 @@
   # Add starship/starship.toml config
   home.file."${config.xdg.configHome}/starship/starship.toml".source = ../../config/starship/starship.toml;
 
+  # Add alacritty config
+  home.file."${config.xdg.configHome}/alacritty/alacritty.yml".source = ../../config/alacritty/alacritty.yml;
+
   # Add nixpkg config
   home.file."${config.home.homeDirectory}/.config/nixpkgs/config.nix".source = ../../config/nixpkgs/config.nix;
 
@@ -97,7 +100,7 @@
 
     emacs = {
       enable = true;
-      package = pkgs.emacsNativeComp;
+      package = pkgs.emacsUnstable;
       extraPackages = (epkgs: [ epkgs.vterm epkgs.emacsql-sqlite3 ] );
     };
 
@@ -114,6 +117,11 @@
     };
 
     starship = {
+      enable = true;
+    };
+
+    # Enable alacritty
+    alacritty = {
       enable = true;
     };
   };

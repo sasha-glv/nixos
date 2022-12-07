@@ -27,19 +27,6 @@
   boot.loader.systemd-boot.consoleMode = "0";
 
   disabledModules = [ "virtualisation/vmware-guest.nix" ];
-  # Share our host filesystem
-  fileSystems."/host" = {
-    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-    device = ".host:/";
-    options = [
-      "umask=22"
-      "uid=1000"
-      "gid=1000"
-      "allow_other"
-      "auto_unmount"
-      "defaults"
-    ];
-  };
 
   # Allow SSH access through the firewall
   networking.firewall.allowedTCPPorts = [ 22 ];
@@ -94,9 +81,9 @@
   # fonts require a purchase.
   fonts = {
     fontDir.enable = true;
-
-    fonts = [
-      pkgs.fira-code
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      fira-code
     ];
   };
 
@@ -124,7 +111,7 @@
     awscli
     nodejs-16_x
     nodePackages.yaml-language-server
-    python3
+    python311
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.
     (writeShellScriptBin "xrandr-auto" ''
