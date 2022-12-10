@@ -50,6 +50,7 @@
   # We expect to run the VM on hidpi machines.
   hardware.video.hidpi.enable = true;
 
+  security.polkit.enable = true;
   # Don't require password for sudo
   security.sudo.wheelNeedsPassword = false;
 
@@ -70,9 +71,17 @@
     layout = "us";
     dpi = 220;
 
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    /* displayManager.gdm.enable = true; */
+    /* desktopManager.gnome.enable = true; */
 
+  };
+  # Enabl i3
+  services.xserver.windowManager.i3.enable = true;
+
+  # Lightdm
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    greeters.gtk.enable = true;
   };
 
   services.tailscale.enable = true;

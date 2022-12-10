@@ -38,6 +38,12 @@
   # Add nixpkg config
   home.file."${config.home.homeDirectory}/.config/nixpkgs/config.nix".source = ../../config/nixpkgs/config.nix;
 
+  # Add i3 config
+  home.file."${config.xdg.configHome}/i3/config".source = ../../config/i3/config;
+
+  # Add i3status
+  home.file."${config.xdg.configHome}/i3/i3status".source = ../../config/i3/i3status;
+
   # Configure git
   programs.git = {
     enable = true;
@@ -124,5 +130,19 @@
     alacritty = {
       enable = true;
     };
+
+    i3status = {
+      enable = true;
+
+      general = {
+      };
+
+      modules = {
+        ipv6.enable = false;
+        "wireless _first_".enable = false;
+        "battery all".enable = false;
+      };
+    };
   };
+
 }
