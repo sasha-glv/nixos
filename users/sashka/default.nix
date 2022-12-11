@@ -1,4 +1,5 @@
-{ config, pkgs, lib, system, ... }:
+# Return anonymous function for home-manager
+{gui, ...}: { config, pkgs, lib, system, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -99,8 +100,8 @@
     };
 
     kitty = {
+      enable = gui;
       theme = "Modus Vivendi";
-      enable = true;
       extraConfig = builtins.readFile ../../config/kitty/kitty.conf;
     };
 
@@ -132,7 +133,7 @@
     };
 
     i3status = {
-      enable = true;
+      enable = gui;
 
       general = {
       };
