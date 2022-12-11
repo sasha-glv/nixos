@@ -1,12 +1,7 @@
-# Return anonymous function for home-manager
-{gui, ...}: { config, pkgs, lib, system, ... }:
-
+{ config, pkgs, lib, system, gui, ... }:
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
   home.username = "sashka";
   home.homeDirectory = "/home/sashka";
-
   home.stateVersion = "22.05";
 
   # Add fd config
@@ -145,5 +140,4 @@
       };
     };
   };
-
 }
