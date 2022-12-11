@@ -20,7 +20,7 @@
     in {
       nixosConfigurations = listToAttrs                       # { thror = <system> }
         (map
-          (n: {name = n; value = ( mylib.mkHost {inherit inputs overlays; host = n; system = system;});})                                                  # { name = "thror"; value = <system> }
-          ((mylib.readHosts ./hosts)));                       # [ "thror" ]
+          (host: {name = host.name; value = ( mylib.mkHost {inherit inputs overlays; host = host; system = system;});})                                                  # { name = "thror"; value = <system> }
+          (import ./hosts));
     };
 }
