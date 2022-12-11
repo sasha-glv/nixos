@@ -24,7 +24,7 @@
   boot.loader.systemd-boot.consoleMode = "0";
 
   # Allow SSH access through the firewall
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 8443 8080 ];
 
   # Allow tailscale through the firewall
   networking.firewall.checkReversePath = "loose";
@@ -89,6 +89,12 @@
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
       fira-code
     ];
+  };
+
+  # enable unifi controller
+  services.unifi = {
+    enable = true;
+    unifiPackage = pkgs.unifi7;
   };
 
   # List packages installed in system profile. To search, run:
