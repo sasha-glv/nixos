@@ -51,7 +51,7 @@ bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+space floating toggle
 bindsym Mod1+Up focus up
 bindsym Mod1+a focus parent
-bindsym Mod1+d exec /nix/store/saq980fhzyxsfb138y98vbwcinavbix2-dmenu-5.2/bin/dmenu_run
+bindsym Mod1+d exec dmenu_run
 bindsym Mod1+e layout toggle split
 bindsym Mod1+f fullscreen toggle
 bindsym Mod1+h split h
