@@ -122,6 +122,8 @@
 (setq evil-snipe-scope 'buffer)
 (setq org-link-descriptive 'nil)
 (setq lsp-headerline-breadcrumb-enable 't)
+(setq eldoc-echo-area-prefer-doc-buffer 't)
+
 ;; Maps
 ;;
 (map! "s-s" #'save-buffer)
