@@ -40,6 +40,9 @@ require('packer').startup(function()
   })
   use { 'ishan9299/modus-theme-vim' }
   use { 'neoclide/coc.nvim', branch = 'release' }
+  -- Install nvimtree
+  use { 'nvim-tree/nvim-tree.lua' }
+  use { 'nvim-tree/nvim-web-devicons' }
 end)
 
 require 'nvim-treesitter.configs'.setup({
@@ -50,6 +53,13 @@ require 'nvim-treesitter.configs'.setup({
   --    indent = {
   --        enable = true
   --    }
+})
+require("nvim-tree").setup({
+  view = {
+    float = {
+      enable = true,
+    },
+  }
 })
 if vim.g.vscode == nil then
   vim.cmd('colorscheme modus-vivendi')
@@ -88,6 +98,8 @@ vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0
 vim.g.mapleader = ","
 vim.g.fzf_preview_window = { 'up:40%:hidden', 'ctrl-g' }
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.termguicolors = true
 vim.o.completeopt = 'menuone,noselect'
 vim.o.scrolloff = 10
@@ -98,7 +110,8 @@ api.nvim_set_keymap('n', '<Leader>f', ':Files<CR>', { noremap = true, silent = t
 api.nvim_set_keymap('n', '<Leader>r', ':Rg ', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>a', ':Commands<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>b', ':Buffers<CR>', { noremap = true, silent = true })
-api.nvim_set_keymap('n', '<Leader>z', ':Explore "%:p:h"<CR><CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('n', '<Leader>z', ':NvimTreeFocus<CR><CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeFindFile<CR><CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Space>', 'q:', { noremap = true, silent = true })
 api.nvim_set_keymap('v', '<Space>', 'q:', { noremap = true, silent = true })
 api.nvim_set_keymap('n', "<C-/>", "<Plug>Commentary", { silent = true })
