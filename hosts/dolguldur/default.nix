@@ -132,6 +132,7 @@
     # You can test if you don't need this by deleting this and seeing
     # if the clipboard sill works.
     gtkmm3
+    rust-analyzer
   ];
 
 

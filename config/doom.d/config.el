@@ -112,7 +112,7 @@
          :map copilot-completion-map
          ("<tab>" . 'copilot-accept-completion)
          ("TAB" . 'copilot-accept-completion)
-         ("M-\\" . 'copilot-next-completion))
+         ("M-\\" . 'copilot-next-completion)))
 
 ;; (use-package! company
 ;;   :config
