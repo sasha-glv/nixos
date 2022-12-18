@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports =
@@ -23,12 +23,10 @@
 
   boot.loader.systemd-boot.consoleMode = "0";
 
-  # Allow SSH access through the firewall
-  networking.firewall.allowedTCPPorts = [ 22 8443 8080 ];
-
+  networking.firewall.allowedTCPPorts = [ 22 8080 ];
   # Allow tailscale through the firewall
   networking.firewall.checkReversePath = "loose";
-
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5201 8443 4444 ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -100,6 +98,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    inputs.helix.packages.${system}.helix
     neovim
     curl
     parted
@@ -110,19 +109,14 @@
     killall
     xclip
     yubikey-manager
-    vault
     sqlite
     gcc
     kbfs
     keybase
     kubectl
-    terraform
-    google-cloud-sdk
-    awscli
     nodejs-16_x
     nodePackages.yaml-language-server
     python311
+    iperf3
   ];
-
-
 }

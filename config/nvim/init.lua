@@ -39,6 +39,7 @@ require('packer').startup(function()
   end
   })
   use { 'ishan9299/modus-theme-vim' }
+  use { 'neoclide/coc.nvim', branch = 'release' }
 end)
 
 require 'nvim-treesitter.configs'.setup({
