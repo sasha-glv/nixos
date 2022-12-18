@@ -59,7 +59,10 @@ require("nvim-tree").setup({
     float = {
       enable = true,
     },
-  }
+  },
+  -- Disable netrw completely
+  disable_netrw = true,
+
 })
 if vim.g.vscode == nil then
   vim.cmd('colorscheme modus-vivendi')
@@ -98,8 +101,8 @@ vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0
 vim.g.mapleader = ","
 vim.g.fzf_preview_window = { 'up:40%:hidden', 'ctrl-g' }
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 vim.o.termguicolors = true
 vim.o.completeopt = 'menuone,noselect'
 vim.o.scrolloff = 10
@@ -116,9 +119,9 @@ api.nvim_set_keymap('n', '<Space>', 'q:', { noremap = true, silent = true })
 api.nvim_set_keymap('v', '<Space>', 'q:', { noremap = true, silent = true })
 api.nvim_set_keymap('n', "<C-/>", "<Plug>Commentary", { silent = true })
 api.nvim_set_keymap('v', "<C-/>", "<Plug>Commentary", { silent = true })
-api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', { noremap = true, silent = true })
-api.nvim_set_keymap('n', '<Tab>', ':bn<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<C-p>', ':cp<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+api.nvim_set_keymap("i", "<C-\\>", 'copilot#Dismiss()', { silent = true, expr = true })
 api.nvim_set_keymap('n', '<Leader>qc', ':cexpr []<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>qq', ':cclose<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<C-n>', ':cn<CR>', { noremap = true, silent = true })
