@@ -105,6 +105,15 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
 
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+         ("C-<tab>" . 'copilot-accept-completion-by-word)
+         :map copilot-completion-map
+         ("<tab>" . 'copilot-accept-completion)
+         ("TAB" . 'copilot-accept-completion)
+         ("M-\\" . 'copilot-next-completion))
+
 ;; (use-package! company
 ;;   :config
 ;;   (setq +company-backend-alist (assq-delete-all 'text-mode +company-backend-alist))
