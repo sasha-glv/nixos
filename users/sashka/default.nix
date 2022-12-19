@@ -85,7 +85,6 @@
         source ${config.home.homeDirectory}/sh.functions/git.sh
         source ${config.home.homeDirectory}/sh.functions/boilerplate.sh
         alias magit='emacs -nw --eval "(magit-status)"'
-        alias emacs='emacs -nw'
         export EDITOR=nvim
       '';
     };

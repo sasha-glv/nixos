@@ -24,6 +24,7 @@
   boot.loader.systemd-boot.consoleMode = "0";
 
   networking.firewall.allowedTCPPorts = [ 22 8080 ];
+  networking.firewall.allowedUDPPorts = [ 3478 ];
   # Allow tailscale through the firewall
   networking.firewall.checkReversePath = "loose";
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5201 8443 4444 ];
