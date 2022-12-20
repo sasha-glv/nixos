@@ -53,7 +53,7 @@
        zen               ; distraction-free coding or writing
 
        :editor
-       ;; (evil +everywhere)
+       evil
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
