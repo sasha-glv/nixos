@@ -54,5 +54,5 @@ backend k8s-api
     ${backendsCollect}
 '';
 
-};
+  };
 }

@@ -96,6 +96,12 @@
     ];
   };
 
+  # Add extra certificates from local file certs.pem
+  security.pki.certificates = [ ''
+    ${builtins.readFile ./files/certs.pem}
+    ''
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
