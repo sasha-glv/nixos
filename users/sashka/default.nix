@@ -86,6 +86,7 @@
         source ${config.home.homeDirectory}/sh.functions/boilerplate.sh
         alias magit='emacs -nw --eval "(magit-status)"'
         export EDITOR=nvim
+        export TERM=xterm-256color
       '';
     };
     firefox.enable = true;

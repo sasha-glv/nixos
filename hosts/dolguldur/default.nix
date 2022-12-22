@@ -34,6 +34,8 @@
   # Allow tailscale through the firewall
   networking.firewall.checkReversePath = "loose";
 
+  # Disable ipv6
+  networking.enableIPv6 = false;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
