@@ -93,6 +93,14 @@
     ];
   };
 
+  # Add jellyfin
+  services.jellyfin = {
+    enable = true;
+    user = "jellyfin";
+    group = "jellyfin";
+    openFirewall = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
