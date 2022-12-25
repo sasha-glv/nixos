@@ -10,6 +10,11 @@
     gui = true;
   }
   {
+    name = "nain";
+    system = "x86_64-linux";
+    gui = true;
+  }
+  {
     name = "thror";
     system = "x86_64-linux";
     gui = false;
