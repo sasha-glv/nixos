@@ -6,12 +6,12 @@
       ./hardware-configuration.nix
     ];
 
-  boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "29ddef08";
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "29ddef08";
+  boot.zfs.extraPools = ["backup"];
 
   time.timeZone = "Europe/Amsterdam";
 
