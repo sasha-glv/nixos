@@ -5,6 +5,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "29ddef08";
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -29,7 +33,7 @@
   networking.firewall.checkReversePath = "loose";
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5201 8443 4444 ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   nix = {
     # use unstable nix so we can access flakes
