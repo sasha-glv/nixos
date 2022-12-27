@@ -101,40 +101,24 @@
     openFirewall = true;
   };
 
-  # Add systemd timer that runs hourly daily to send zfs snapshots to the backup server
-
-  systemd.timers."zfs-backup-doc-store" = {
-    description = "Backup ZFS snapshots to backup server";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "hourly";
-      Persistent = true;
-    };
-  };
-  systemd.services."zfs-backup-doc-store" = {
-    path = with pkgs; [ bash zfs openssh ];
-    serviceConfig = {
-      User = "sashka";
-      Type = "oneshot";
-    };
-    script = "/home/sashka/sh.functions/send_zfs_snapshot.sh -r durin -s fast/doc-store -d backup/doc-store";
-  };
-
-  systemd.timers."zfs-backup-doc-store-local" = {
-    description = "Backup ZFS snapshots to backup server";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "hourly";
-      Persistent = true;
-    };
-  };
-  systemd.services."zfs-backup-doc-store-local" = {
-    path = with pkgs; [ bash zfs openssh ];
-    serviceConfig = {
-      User = "sashka";
-      Type = "oneshot";
-    };
-    script = "/home/sashka/sh.functions/send_zfs_snapshot.sh -r nain -s fast/doc-store -d backup/doc-store";
+  services.zfsBackupReplication = {
+    enable = true;
+    datasets = [
+      {
+        name = "fast/doc-store";
+        remote = "backup/doc-store";
+        serviceName = "zfs-backup-doc-store-durin";
+        remoteHost = "durin";
+        user = "sashka";
+      }
+      {
+        name = "fast/doc-store";
+        remote = "backup/doc-store";
+        serviceName = "zfs-backup-doc-store-nain";
+        remoteHost = "nain";
+        user = "sashka";
+      }
+    ];
   };
 
   # List packages installed in system profile. To search, run:
