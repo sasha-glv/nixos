@@ -62,7 +62,7 @@ base_snapshot_remote=$(ssh $remote_host zfs list -t snapshot -o name -H $remote_
 # Check if the base snapshot exists
 if [ -z "$base_snapshot_remote" ]; then
     # Send the snapshot to the remote host
-    zfs send $local_zfs_volume@$snapshot_name | ssh $remote_host zfs receive $remote_zfs_volume -F
+    zfs send $local_zfs_volume@$snapshot_name | ssh $remote_host zfs receive $remote_zfs_volume
     exit 0
 fi
 

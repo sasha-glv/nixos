@@ -101,6 +101,25 @@
     openFirewall = true;
   };
 
+  # Add systemd timer that runs hourly daily to send zfs snapshots to the backup server
+
+  systemd.timers."zfs-backup-doc-store" = {
+    description = "Backup ZFS snapshots to backup server";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "hourly";
+      Persistent = true;
+    };
+  };
+  systemd.services."zfs-backup-doc-store" = {
+    path = with pkgs; [ bash zfs openssh ];
+    serviceConfig = {
+      User = "sashka";
+      Type = "oneshot";
+    };
+    script = "/home/sashka/sh.functions/send_zfs_snapshot.sh -r durin -s fast/doc-store -d backup/doc-store";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
