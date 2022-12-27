@@ -66,7 +66,7 @@ if [ -z "$base_snapshot_remote" ]; then
     exit 0
 fi
 
-zfs send -RI $local_zfs_volume@$base_snapshot_remote $local_zfs_volume@$snapshot_name | ssh $remote_host zfs receive $remote_zfs_volume
+zfs send -I $local_zfs_volume@$base_snapshot_remote $local_zfs_volume@$snapshot_name | ssh $remote_host zfs receive $remote_zfs_volume
 
 # Check if the snapshot was sent successfully
 if [ $? -ne 0 ]; then

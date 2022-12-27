@@ -120,6 +120,23 @@
     script = "/home/sashka/sh.functions/send_zfs_snapshot.sh -r durin -s fast/doc-store -d backup/doc-store";
   };
 
+  systemd.timers."zfs-backup-doc-store-local" = {
+    description = "Backup ZFS snapshots to backup server";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "hourly";
+      Persistent = true;
+    };
+  };
+  systemd.services."zfs-backup-doc-store-local" = {
+    path = with pkgs; [ bash zfs openssh ];
+    serviceConfig = {
+      User = "sashka";
+      Type = "oneshot";
+    };
+    script = "/home/sashka/sh.functions/send_zfs_snapshot.sh -r nain -s fast/doc-store -d backup/doc-store";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
