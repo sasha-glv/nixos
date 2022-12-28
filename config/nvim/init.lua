@@ -43,6 +43,7 @@ require('packer').startup(function()
   -- Install nvimtree
   use { 'nvim-tree/nvim-tree.lua' }
   use { 'nvim-tree/nvim-web-devicons' }
+  use { 'ojroques/vim-oscyank' }
 end)
 
 require 'nvim-treesitter.configs'.setup({

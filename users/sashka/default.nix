@@ -48,32 +48,30 @@
   services.keybase.enable = true;
   services.kbfs.enable = true;
 
-  # Configure git
-  programs.git = {
-    enable = true;
-    userName = "Sasha Guljajev";
-    userEmail = "sasha@zxcvmk.com";
-    signing = {
-      signByDefault = true;
-      key = "FAE411852283959B";
-    };
-    extraConfig = {
-      github.user = "sasha-glv";
-    };
-    aliases = {
-      co = "checkout";
-      ci = "commit";
-      st = "status";
-      br = "branch";
-      hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
-      type = "cat-file -t";
-      dump = "cat-file -p";
-      dlast = "diff HEAD~1";
-      dmaster = "diff HEAD master";
-    };
-
-  };
   programs = {
+    git = {
+      enable = true;
+      userName = "Sasha Guljajev";
+      userEmail = "sasha@zxcvmk.com";
+      signing = {
+        signByDefault = true;
+        key = "FAE411852283959B";
+      };
+      extraConfig = {
+        github.user = "sasha-glv";
+      };
+      aliases = {
+        co = "checkout";
+        ci = "commit";
+        st = "status";
+        br = "branch";
+        hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short";
+        type = "cat-file -t";
+        dump = "cat-file -p";
+        dlast = "diff HEAD~1";
+        dmaster = "diff HEAD master";
+      };
+    };
     gpg = {
       enable = true;
     };
@@ -95,19 +93,18 @@
         export TERM=xterm-256color
       '';
     };
-    firefox.enable = true;
-
+    firefox = {
+      enable = true;
+    };
     neovim = {
       enable = true;
       package = pkgs.neovim-nightly;
     };
-
     kitty = {
       enable = gui;
       theme = "Modus Vivendi";
       extraConfig = builtins.readFile ../../config/kitty/kitty.conf;
     };
-
     emacs = {
       enable = true;
       package = pkgs.emacsUnstable;
@@ -117,7 +114,7 @@
     vscode.enable = true;
     home-manager.enable = true;
     zellij.enable = true;
-
+    btop.enable = true;
     go = {
       enable = true;
     };
