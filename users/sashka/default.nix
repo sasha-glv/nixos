@@ -40,6 +40,14 @@
   # Add i3status
   home.file."${config.xdg.configHome}/i3/i3status".source = ../../config/i3/i3status;
 
+  # Enable syncthing
+  services.syncthing = {
+    enable = true;
+  };
+
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
+
   # Configure git
   programs.git = {
     enable = true;
@@ -65,8 +73,6 @@
     };
 
   };
-  services.keybase.enable = true;
-  services.kbfs.enable = true;
   programs = {
     gpg = {
       enable = true;

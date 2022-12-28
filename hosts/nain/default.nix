@@ -11,7 +11,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.zfs.extraPools = [ "fast" "nori" ];
+  boot.zfs.extraPools = [ "fast" "nori" "backup" ];
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -27,11 +27,12 @@
 
   boot.loader.systemd-boot.consoleMode = "0";
 
-  networking.firewall.allowedTCPPorts = [ 22 8080 ];
-  networking.firewall.allowedUDPPorts = [ 3478 ];
+  networking.firewall.allowedTCPPorts = [ 22 8080 22000 ];
+  networking.firewall.allowedUDPPorts = [ 3478 22000 21027 ];
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5201 8443 4444 8384 ];
   # Allow tailscale through the firewall
   networking.firewall.checkReversePath = "loose";
-  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5201 8443 4444 ];
+
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   nix = {
@@ -116,6 +117,20 @@
         remote = "backup/doc-store";
         serviceName = "zfs-backup-doc-store-nain";
         remoteHost = "nain";
+        user = "sashka";
+      }
+      {
+        name = "fast/sync";
+        remote = "backup/sync";
+        serviceName = "zfs-backup-sync-nain";
+        remoteHost = "nain";
+        user = "sashka";
+      }
+      {
+        name = "fast/sync";
+        remote = "backup/sync";
+        serviceName = "zfs-backup-sync-durin";
+        remoteHost = "durin";
         user = "sashka";
       }
     ];
