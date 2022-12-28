@@ -47,7 +47,7 @@ if [ -z "$remote_zfs_volume" ]; then
 fi
 
 # Create a snapshot of the local zfs volume with the current date and time
-snapshot_name=$(date +%Y-%m-%d_%H-%M-%S)
+snapshot_name=$(date +%Y-%m-%d_%H-%M)
 zfs snapshot $local_zfs_volume@$snapshot_name
 
 # Check if the snapshot was created successfully

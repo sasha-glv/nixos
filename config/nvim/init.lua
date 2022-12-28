@@ -122,6 +122,7 @@ api.nvim_set_keymap('n', '<Leader>a', ':Commands<CR>', { noremap = true, silent 
 api.nvim_set_keymap('n', '<Leader>b', ':Buffers<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>z', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })
+api.nvim_set_keymap('v', '<Leader>y', ':OSCYank<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Space>', 'q:', { noremap = true, silent = true })
 api.nvim_set_keymap('v', '<Space>', 'q:', { noremap = true, silent = true })
 api.nvim_set_keymap('n', "<M-\\>", "<Plug>Commentary", { silent = true })
