@@ -94,14 +94,6 @@
     ];
   };
 
-  # Add jellyfin
-  services.jellyfin = {
-    enable = true;
-    user = "jellyfin";
-    group = "jellyfin";
-    openFirewall = true;
-  };
-
   services.zfsBackupReplication = {
     enable = true;
     datasets = [

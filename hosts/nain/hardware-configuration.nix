@@ -27,7 +27,7 @@
   services.nfs.server = {
     enable = true;
     exports = ''
-      /nori/media 100.64.0.0/10 (rw,nohide,insecure,no_subtree_check) 
+      /nori/media 192.168.2.0/24 (rw,nohide,insecure,no_subtree_check) 
     '';
   };
 
