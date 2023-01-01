@@ -69,12 +69,12 @@ require("nvim-tree").setup({
   },
   -- Disable netrw completely
   disable_netrw = true,
-
 })
+
 if vim.g.vscode == nil then
   vim.cmd('colorscheme modus-vivendi')
 end
--- vim.cmd('packadd cfilter')
+vim.cmd('packadd cfilter')
 vim.o.textwidth = 160
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
@@ -114,7 +114,7 @@ vim.o.termguicolors = true
 vim.o.completeopt = 'menuone,noselect'
 vim.o.scrolloff = 10
 vim.o.cmdheight = 0
-vim.api.nvim_set_option('cpoptions', 'y')
+-- vim.api.nvim_set_option('cpoptions', 'y')
 api.nvim_set_keymap('n', '<Leader>x', ':bp<CR>:bd#<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>f', ':Files<CR>', { noremap = true, silent = true })
 api.nvim_set_keymap('n', '<Leader>r', ':Rg ', { noremap = true, silent = true })
