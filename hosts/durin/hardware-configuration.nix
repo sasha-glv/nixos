@@ -25,7 +25,7 @@
 
   # Mount nfs from nain under /nori/media
   fileSystems."/nori/media" = {
-    device = "nain:/nori/media";
+    device = "192.168.2.102:/nori/media";
     fsType = "nfs";
   };
 
