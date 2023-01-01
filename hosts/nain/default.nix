@@ -27,7 +27,7 @@
 
   boot.loader.systemd-boot.consoleMode = "0";
 
-  networking.firewall.allowedTCPPorts = [ 22 8080 22000 ];
+  networking.firewall.allowedTCPPorts = [ 22 8080 22000 2049 ];
   networking.firewall.allowedUDPPorts = [ 3478 22000 21027 ];
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5201 8443 4444 8384 ];
   # Allow tailscale through the firewall
@@ -134,14 +134,6 @@
         user = "sashka";
       }
     ];
-  };
-
-  # Expose NFS shares to the network
-  services.nfs.server = {
-    enable = true;
-    exports = ''
-      /nori/media 100.64.0.0/10 (rw,fsid=0,no_subtree_check)
-    '';
   };
 
   # List packages installed in system profile. To search, run:

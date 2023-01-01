@@ -23,6 +23,14 @@
       fsType = "vfat";
     };
 
+  # Expose NFS shares to the network
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /nori/media 100.64.0.0/10 (rw,nohide,insecure,no_subtree_check) 
+    '';
+  };
+
   swapDevices =
     [ { device = "/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B7784DD1E20-part2"; }
     ];
