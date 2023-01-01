@@ -110,7 +110,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    inputs.helix.packages.${system}.helix
+    /* inputs.helix.packages.${system}.helix */
     neovim
     curl
     parted

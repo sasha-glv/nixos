@@ -23,10 +23,29 @@
       fsType = "vfat";
     };
 
+  # Mount nfs from nain under /nori/media
+  fileSystems."/nori/media" = {
+    device = "nain:/nori/media";
+    fsType = "nfs";
+  };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/d696ad6c-7edd-44b7-a86c-ec1b044d1615"; }
     ];
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      /* vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium) */
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
