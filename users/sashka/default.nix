@@ -91,6 +91,7 @@
         alias magit='emacs -nw --eval "(magit-status)"'
         export EDITOR=nvim
         export TERM=xterm-256color
+
       '';
     };
     firefox = {
@@ -129,7 +130,7 @@
 
     # Enable alacritty
     alacritty = {
-      enable = true;
+      enable = gui;
     };
 
     i3status = {
