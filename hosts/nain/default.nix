@@ -136,6 +136,14 @@
     ];
   };
 
+  # Expose NFS shares to the network
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /nori/media 100.64.0.0/10 (rw,fsid=0,no_subtree_check)
+    '';
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
