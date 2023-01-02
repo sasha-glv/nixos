@@ -48,7 +48,7 @@ fi
 
 # Create a snapshot of the local zfs volume with the current date and time
 snapshot_name=$(date +%Y-%m-%d_%H-%M)
-zfs snapshot $local_zfs_volume@$snapshot_name
+zfs snapshot $local_zfs_volume@$snapshot_name || true
 
 # Check if the snapshot was created successfully
 if [ $? -ne 0 ]; then
