@@ -58,7 +58,8 @@
   :config
   (setq modus-themes-headings nil)
   (setq modus-themes-subtle-line-numbers t)
-  (modus-themes-load-themes))
+  ; (modus-themes-load-themes)
+  )
 
 (after! org
   ;; (setq org-startup-indented nil)
