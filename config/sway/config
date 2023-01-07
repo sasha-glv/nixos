@@ -62,6 +62,10 @@ bindsym Mod1+space focus mode_toggle
 bindsym Mod1+Shift+v split v
 bindsym Mod1+Shift+w layout tabbed
 
+# Brightness
+bindsym XF86MonBrightnessUp exec light -inc 10
+bindsym XF86MonBrightnessDown exec light -dec 10
+
 mode "resize" {
   bindsym Down resize grow height 10 px or 10 ppt
   bindsym Escape mode default
@@ -73,14 +77,14 @@ mode "resize" {
 
 bar {
   font pango:Fira Code 8
-  status_command i3status
-  mode dock
-  hidden_state hide
-  position bottom
-  workspace_buttons yes
-  strip_workspace_numbers no
-  tray_output primary
+  # status_command i3status
+  # mode dock
+  # hidden_state hide
+  # position bottom
+  # workspace_buttons yes
+  # strip_workspace_numbers no
+  # tray_output primary
 }
 
 # colemak
-exec 'setxkbmap us -variant colemak'
+# exec 'setxkbmap us -variant colemak'
