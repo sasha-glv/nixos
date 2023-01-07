@@ -73,6 +73,13 @@
     /* desktopManager.gnome.enable = true; */
 
   };
+
+  # enable unifi controller
+  services.unifi = {
+    enable = false;
+    unifiPackage = pkgs.unifi7;
+  };
+
   # Enable i3
   services.xserver.windowManager.i3.enable = true;
 
