@@ -96,7 +96,7 @@
 
   # enable unifi controller
   services.unifi = {
-    enable = true;
+    enable = false;
     unifiPackage = pkgs.unifi7;
   };
 
