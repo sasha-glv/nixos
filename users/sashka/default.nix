@@ -40,8 +40,8 @@
   # Add i3status
   home.file."${config.xdg.configHome}/i3/i3status".source = ../../config/i3/i3status;
 
-  # Add sway configuration
-  home.file."${config.xdg.configHome}/sway/config".source = ../../config/sway/config;
+  /* # Add sway configuration */
+  /* home.file."${config.xdg.configHome}/sway/config".source = ../../config/sway/config; */
 
   # Enable syncthing
   services.syncthing = {
@@ -106,7 +106,7 @@
     };
     neovim = {
       enable = true;
-      package = pkgs.neovim-nightly;
+      /* package = pkgs.neovim-nightly; */
     };
     kitty = {
       enable = gui;

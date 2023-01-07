@@ -18,7 +18,8 @@
       inherit (nixpkgs) lib;
       inherit (builtins) listToAttrs map;
       system = "x86_64-linux";
-      overlays = [ inputs.neovim-nightly.overlay inputs.emacs.overlay ];
+      /* overlays = [ inputs.neovim-nightly.overlay inputs.emacs.overlay ]; */
+      overlays = [ inputs.emacs.overlay ];
       mylib = import ./lib { inherit lib;  };
     in {
       nixosConfigurations = listToAttrs                       # { thror = <system> }
