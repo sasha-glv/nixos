@@ -40,6 +40,9 @@
   # Add i3status
   home.file."${config.xdg.configHome}/i3/i3status".source = ../../config/i3/i3status;
 
+  # Add sway configuration
+  home.file."${config.xdg.configHome}/sway/config".source = ../../config/sway/config;
+
   # Enable syncthing
   services.syncthing = {
     enable = true;
@@ -47,6 +50,19 @@
 
   services.keybase.enable = true;
   services.kbfs.enable = true;
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      # Use kitty as default terminal
+      terminal = "kitty";
+      startup = [
+        # Launch Firefox on start
+        {command = "kitty";}
+      ];
+    };
+  };
 
   programs = {
     git = {

@@ -69,17 +69,9 @@
     layout = "us";
     dpi = 220;
 
-    /* displayManager.gdm.enable = true; */
-    /* desktopManager.gnome.enable = true; */
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
-  };
-  # Enable i3
-  services.xserver.windowManager.i3.enable = true;
-
-  # Lightdm
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    greeters.gtk.enable = true;
   };
 
   services.tailscale.enable = true;
@@ -107,10 +99,19 @@
     openFirewall = true;
   };
 
+  # enable sway window manager
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     /* inputs.helix.packages.${system}.helix */
+    swaylock
+    swayidle
+    swaybg
     neovim
     curl
     parted
