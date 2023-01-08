@@ -99,6 +99,8 @@
   #
   environment.systemPackages = with pkgs; [
     /* inputs.helix.packages.${system}.helix */
+    libsForQt5.bismuth
+    gnomeExtensions.paperwm
     neovim
     curl
     parted
@@ -118,5 +120,6 @@
     nodePackages.yaml-language-server
     python311
     iperf3
+    logseq
   ];
 }
