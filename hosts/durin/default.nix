@@ -67,12 +67,15 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    dpi = 220;
-
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    desktopManager.plasma5.enable = true;
+    # LightDM
+    displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeter.enable = true;
 
   };
+
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+  programs.kdeconnect.enable = true;
 
   services.tailscale.enable = true;
 
@@ -86,32 +89,16 @@
     ];
   };
 
-  # enable unifi controller
-  services.unifi = {
-    enable = false;
-    unifiPackage = pkgs.unifi7;
-  };
-
   services.jellyfin = {
     enable = true;
     user = "jellyfin";
     group = "jellyfin";
     openFirewall = true;
   };
-
-  # enable sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  #
   environment.systemPackages = with pkgs; [
     /* inputs.helix.packages.${system}.helix */
-    swaylock
-    swayidle
-    swaybg
+    libsForQt5.bismuth
     neovim
     curl
     parted
@@ -131,5 +118,6 @@
     nodePackages.yaml-language-server
     python311
     iperf3
+    logseq
   ];
 }
