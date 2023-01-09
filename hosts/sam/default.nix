@@ -29,7 +29,21 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
 
-  # This works through our custom module imported above
+  # add hw acceleration
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+
   nixpkgs.config.allowUnsupportedSystem = true;
 
   system.stateVersion = "22.05";
@@ -106,6 +120,8 @@
     /* inputs.helix.packages.${system}.helix */
     libsForQt5.bismuth
     libsForQt5.plasma-nm
+    # Add syncthingtray
+    syncthingtray
     neovim
     curl
     parted
