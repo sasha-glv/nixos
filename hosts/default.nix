@@ -19,4 +19,9 @@
     system = "x86_64-linux";
     gui = false;
   }
+  {
+    name = "sam";
+    system = "x86_64-linux";
+    gui = true;
+  }
 ]
