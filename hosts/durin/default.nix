@@ -67,11 +67,10 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    dpi = 220;
-
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     desktopManager.plasma5.enable = true;
+    # LightDM
+    displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeter.enable = true;
 
   };
 
@@ -100,7 +99,6 @@
   environment.systemPackages = with pkgs; [
     /* inputs.helix.packages.${system}.helix */
     libsForQt5.bismuth
-    gnomeExtensions.paperwm
     neovim
     curl
     parted
