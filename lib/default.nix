@@ -7,7 +7,7 @@ rec {
       specialArgs = { host = host.name; inherit system inputs overlays; };
       modules = [
         ../hosts/${host.name}
-        inputs.nixos-hardware.nixosModules.${host.hardware}
+        
         {
           nixpkgs.config.allowUnfree = true;
           nixpkgs.overlays = overlays;
@@ -23,6 +23,7 @@ rec {
             useGlobalPkgs = true;
           };
         }
-      ] ++ (import ../modules);
+      ] ++ (import ../modules) 
+      ++ (if host.hardware != "" then [ inputs.nixos-hardware.nixosModules.${host.hardware} ] else []);
     };
 }
