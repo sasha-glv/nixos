@@ -23,5 +23,6 @@
     name = "sam";
     system = "x86_64-linux";
     gui = true;
+    hardware = "framework-12th-gen-intel";
   }
 ]

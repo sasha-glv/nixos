@@ -12,7 +12,7 @@ in
             hashedPassword = "$6$xv0BxpIhmQa0eMOX$.05JhiJSGUPs8vL0.MJI3YtJEoJ73OLm73/Cu.Mzq0TPVegdXaAxVUt86rHSyJlqKsP.9AonWk7nKPsbpbrqJ1";
             # shell = pkgs.zsh;
             isNormalUser = true;
-            extraGroups = [ "wheel" "docker" ];
+            extraGroups = [ "wheel" "docker" "sound" "audio" "video" ];
             openssh.authorizedKeys.keys = authorizedKeys;
         };
         root = {

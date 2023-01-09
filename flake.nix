@@ -11,6 +11,8 @@
     emacs.inputs.nixpkgs.follows = "nixpkgs";
     helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
+    # Add nixos harware flake
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = inputs @ { self, nixpkgs,  ... }:

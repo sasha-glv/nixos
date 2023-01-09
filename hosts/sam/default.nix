@@ -11,7 +11,7 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiSupport = true;
-
+  services.fwupd.enable = true;
   boot.initrd.luks.devices.crypted = {
       # the below should be a UUID as reported by `blkid`
       device = "/dev/disk/by-uuid/ea4a9dcd-26a4-4103-9040-5cb342c65249";
@@ -23,6 +23,11 @@
 
   services.openssh.enable = true;
   system.copySystemConfiguration = true;
+
+  # enable sound
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # This works through our custom module imported above
   nixpkgs.config.allowUnsupportedSystem = true;
@@ -93,10 +98,14 @@
     ];
   };
 
+  networking.networkmanager.enable = true;
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
   #
   environment.systemPackages = with pkgs; [
     /* inputs.helix.packages.${system}.helix */
     libsForQt5.bismuth
+    libsForQt5.plasma-nm
     neovim
     curl
     parted
