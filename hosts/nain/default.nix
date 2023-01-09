@@ -11,7 +11,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.zfs.extraPools = [ "fast" "nori" "backup" ];
+  boot.zfs.extraPools = [ "nori" "backup" ];
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -105,14 +105,14 @@
     enable = true;
     datasets = [
       {
-        name = "fast/doc-store";
+        name = "backup/doc-store";
         remote = "backup/doc-store";
         serviceName = "zfs-backup-doc-store-durin";
         remoteHost = "durin";
         user = "sashka";
       }
       {
-        name = "fast/doc-store";
+        name = "backup/doc-store";
         remote = "backup/doc-store";
         serviceName = "zfs-backup-doc-store-nain";
         remoteHost = "nain";
@@ -123,13 +123,6 @@
         remote = "backup/sync";
         serviceName = "zfs-backup-sync-nain";
         remoteHost = "nain";
-        user = "sashka";
-      }
-      {
-        name = "fast/sync";
-        remote = "backup/sync";
-        serviceName = "zfs-backup-sync-durin";
-        remoteHost = "durin";
         user = "sashka";
       }
     ];
