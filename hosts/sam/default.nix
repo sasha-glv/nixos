@@ -37,27 +37,23 @@
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      intel-media-driver
+      /* vaapiIntel */
       vaapiVdpau
       libvdpau-va-gl
     ];
   };
-
-  nixpkgs.config.allowUnsupportedSystem = true;
-
   system.stateVersion = "22.05";
-
   boot.loader.systemd-boot.consoleMode = "0";
-
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.allowedUDPPorts = [  ];
   # Allow tailscale through the firewall
   networking.firewall.checkReversePath = "loose";
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5201 8443 4444 ];
 
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
+  # Add bluetooth
+  hardware.bluetooth.enable = true;
+  
   nix = {
     # use unstable nix so we can access flakes
     package = pkgs.nixUnstable;
@@ -67,6 +63,11 @@
       keep-derivations = true
     '';
   };
+
+  # Power management
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   # We expect to run the VM on hidpi machines.
   hardware.video.hidpi.enable = true;
@@ -99,7 +100,6 @@
 
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
   programs.kdeconnect.enable = true;
-
   services.tailscale.enable = true;
 
   # Manage fonts. We pull these from a secret directory since most of these
@@ -111,6 +111,8 @@
       fira-code
     ];
   };
+  # Enable autocpu-freq
+  /* services.auto-cpufreq.enable = true; */
 
   networking.networkmanager.enable = true;
   networking.wireless.iwd.enable = true;
@@ -142,5 +144,6 @@
     python311
     iperf3
     logseq
+    powertop
   ];
 }
