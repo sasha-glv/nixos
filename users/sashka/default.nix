@@ -46,6 +46,11 @@
   # Enable syncthing
   services.syncthing = {
     enable = true;
+    # tray
+    tray = {
+      enable = true;
+      package = pkgs.syncthingtray;
+    };
   };
 
   services.keybase.enable = true;

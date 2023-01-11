@@ -11,7 +11,11 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.enableCryptodisk = true;
   boot.loader.grub.efiSupport = true;
+  # Enable fwupd for firmware updates
   services.fwupd.enable = true;
+  # Add lvs-testing repository to fwupd
+  services.fwupd.extraRemotes = [ "lvfs-testing" ];
+
   boot.initrd.luks.devices.crypted = {
       # the below should be a UUID as reported by `blkid`
       device = "/dev/disk/by-uuid/ea4a9dcd-26a4-4103-9040-5cb342c65249";
@@ -25,9 +29,17 @@
   system.copySystemConfiguration = true;
 
   # enable sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
+  /* sound.enable = true; */
+  # Enable pipewire
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+  };
 
   # add hw acceleration
   nixpkgs.config.packageOverrides = pkgs: {
@@ -38,7 +50,7 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      /* vaapiIntel */
+      vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
     ];
@@ -67,7 +79,13 @@
   # Power management
   powerManagement.enable = true;
   powerManagement.powertop.enable = true;
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    PCIE_ASPM_ON_BAT = "powersupersave";
+  };
+
+  services.thermald.enable = true;
 
   # We expect to run the VM on hidpi machines.
   hardware.video.hidpi.enable = true;
@@ -95,6 +113,7 @@
     # LightDM
     displayManager.lightdm.enable = true;
     displayManager.lightdm.greeter.enable = true;
+    displayManager.defaultSession = "plasmawayland";
 
   };
 
@@ -122,8 +141,8 @@
     /* inputs.helix.packages.${system}.helix */
     libsForQt5.bismuth
     libsForQt5.plasma-nm
-    # Add syncthingtray
-    syncthingtray
+    plasma-pa
+    pulseaudioFull
     neovim
     curl
     parted
@@ -145,5 +164,8 @@
     iperf3
     logseq
     powertop
+    intel-gpu-tools
+    bitwarden
+    spotify
   ];
 }
